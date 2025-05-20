@@ -395,10 +395,12 @@ button:active {
   text-align: center;
 }
 
+
 .inventory-slot-label-text {
   text-transform: uppercase;
   padding: 0.2vw;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
 
   font-family: $mainFont;
   font-size: 0.7vw;
@@ -411,6 +413,7 @@ button:active {
   font-weight: bold;
   color: $textColor;
   text-align: center;
+  padding: 0 0.2vw;
 }
 
 .inventory-slot-number {
@@ -452,6 +455,7 @@ button:active {
     top: 0.3vw;
     font-size: 0.55vw;
     font-weight: bold;
+    padding: 0 0.2vw;
   }
 }
 

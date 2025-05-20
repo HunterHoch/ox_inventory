@@ -15,6 +15,7 @@ import { ItemsPayload } from '../../reducers/refreshSlots';
 import { closeTooltip, openTooltip } from '../../store/tooltip';
 import { openContextMenu } from '../../store/contextMenu';
 import { useMergeRefs } from '@floating-ui/react';
+import useFitText from '../../hooks/useFitText';
 
 interface SlotProps {
   inventoryId: Inventory['id'];
@@ -30,6 +31,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
   const manager = useDragDropManager();
   const dispatch = useAppDispatch();
   const timerRef = useRef<number | null>(null);
+  const labelText = item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name;
+  const labelRef = useFitText(labelText);
 
   const canDrag = useCallback(() => {
     return canPurchaseItem(item, { type: inventoryType, groups: inventoryGroups }) && canCraftItem(item, inventoryType);
@@ -203,8 +206,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
               </>
             )}
             <div className="inventory-slot-label-box">
-              <div className="inventory-slot-label-text">
-                {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
+              <div className="inventory-slot-label-text" ref={labelRef}>
+                {labelText}
               </div>
               {inventoryType !== 'shop' && item?.durability !== undefined && (
                 <WeightBar percent={item.durability} durability />
