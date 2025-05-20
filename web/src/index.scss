@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 $mainColor: #2e2e2e;
-$textColor: #BDBDBD;
+$textColor: #bdbdbd;
 $mainFont: Inter;
 
-$secondaryColor: rgba(83, 83, 83,0.63);
-$secondaryColorHighlight: #33343F;
+$secondaryColor: rgba(83, 83, 83, 0.63);
+$secondaryColorHighlight: #33343f;
 $secondaryColorLight: rgba(255, 255, 255, 0.5);
 $secondaryColorDark: rgba(214, 214, 214, 0.8);
 
@@ -18,8 +18,9 @@ $secondarycontainerSize: calc(#{$secondarygridRows} * #{$gridSize + 0.22vh} + #{
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -60,18 +61,14 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .context-menu-list {
-
-
-
-
-gap: 4px;
+  gap: 4px;
   outline: none;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.context-menu-item  {
+.context-menu-item {
   min-width: 80px;
   height: 40px;
 
@@ -127,7 +124,7 @@ button:active {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: linear-gradient(45deg, rgba(24,24,24,0.66) 0%, rgb(17, 17, 17) 100%);
+  background: linear-gradient(45deg, rgba(24, 24, 24, 0.66) 0%, rgb(17, 17, 17) 100%);
   gap: 3vw;
 }
 
@@ -137,11 +134,10 @@ button:active {
   align-items: start;
   gap: 1vw;
 
-
   .inventory-control-wrapper {
     display: flex;
     flex-direction: row;
-    gap:1vw;
+    gap: 1vw;
     justify-content: center;
     align-items: center;
   }
@@ -176,8 +172,7 @@ button:active {
     justify-content: center;
     align-items: center;
 
-    img{
-
+    img {
     }
     &:hover {
       background-color: $secondaryColorDark;
@@ -270,33 +265,33 @@ button:active {
 
 // Dialog is used fro useful controls window
 
-.verticalline{
+.verticalline {
   position: relative;
   top: 2vw;
-  left: .6vw;
-  height: calc(#{4.8}  * #{$gridSize + 0.22vh} + #{4.8} * #{$gridGap});
+  left: 0.6vw;
+  height: calc(#{4.8} * #{$gridSize + 0.22vh} + #{4.8} * #{$gridGap});
   width: 2px;
-  background: linear-gradient(180deg, rgba(233, 233, 233, 0.4) 0%,  rgba(233, 233, 233, 0) 100%);
+  background: linear-gradient(180deg, rgba(233, 233, 233, 0.4) 0%, rgba(233, 233, 233, 0) 100%);
 }
 
-.line{
+.line {
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, rgba(233, 233, 233, .4) 0%,  rgba(233, 233, 233, 0) 100%);
+  background: linear-gradient(90deg, rgba(233, 233, 233, 0.4) 0%, rgba(233, 233, 233, 0) 100%);
 }
 
-.playerinventory{
+.playerinventory {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(#{5.5}  * #{$gridSize + 0.22vh} + #{5.5} * #{$gridGap});
+  height: calc(#{5.5} * #{$gridSize + 0.22vh} + #{5.5} * #{$gridGap});
 }
 
-.secondaryinventory{
+.secondaryinventory {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(#{5.5}  * #{$gridSize + 0.22vh} + #{5.5} * #{$gridGap});
+  height: calc(#{5.5} * #{$gridSize + 0.22vh} + #{5.5} * #{$gridGap});
 }
 
 // inventory grids
@@ -306,13 +301,12 @@ button:active {
   gap: calc($gridGap * 2);
 }
 
-.hotinventory-grid-wrapper{
+.hotinventory-grid-wrapper {
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: end;
   gap: 1vw;
-
 }
 
 .inventory-grid-header-wrapper {
@@ -322,15 +316,12 @@ button:active {
   justify-content: space-between;
   margin: 0 1vw;
 
-  p{
+  p {
     color: $textColor;
-
   }
-  img{
+  img {
     width: 1.5vw;
-
   }
-
 }
 
 .inventory-grid-container {
@@ -342,27 +333,24 @@ button:active {
   overflow-y: scroll;
 }
 
-
-
-.secinventory-grid-container{
+.secinventory-grid-container {
   @extend .inventory-grid-container;
   height: $secondarycontainerSize;
 }
 
-
-.hotinventory-grid-container{
+.hotinventory-grid-container {
   @extend .inventory-grid-container;
   height: fit-content;
   padding-top: 0.5vw;
 }
 
-.label-container{
+.label-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 
   gap: 0.4vw;
-  p{
+  p {
     font-size: 1.5vw;
     font-weight: bold;
     text-transform: uppercase;
@@ -370,16 +358,16 @@ button:active {
   }
 }
 
-.weight-container{
+.weight-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.4vw;
 
-  img{
-    width: .9vw;
+  img {
+    width: 0.9vw;
   }
-  p{
+  p {
     font-size: 0.7vw;
     font-weight: bold;
     text-transform: uppercase;
@@ -409,14 +397,23 @@ button:active {
 
 .inventory-slot-label-text {
   text-transform: uppercase;
+  padding: 0.2vw;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0.2vw;
 
   font-family: $mainFont;
   font-size: 0.7vw;
-  font-weight: bold
+  font-weight: bold;
+}
+
+.inventory-slot-weight {
+  position: absolute;
+  top: 0.1vw;
+  right: 0.2vw;
+  font-family: $mainFont;
+  font-size: 0.55vw;
+  font-weight: bold;
+  color: $textColor;
 }
 
 .inventory-slot-number {
@@ -433,7 +430,7 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: .7vw;
+  font-size: 0.7vw;
   font-weight: bold;
   font-family: $mainFont;
 }
@@ -443,21 +440,19 @@ button:active {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-
 }
 
 .item-slot-header-wrapper {
-  p{
+  p {
     position: relative;
     top: 0.3vw;
     font-size: 0.7vw;
-    font-weight: bold
-  };
+    font-weight: bold;
+  }
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
 
 .item-slot-currency-wrapper {
   display: flex;
@@ -481,7 +476,6 @@ button:active {
     text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
-
 
 .tooltip-wrapper {
   pointer-events: none;
@@ -608,7 +602,6 @@ button:active {
   overflow: hidden;
 }
 
-
 .transition-fade-enter {
   opacity: 0;
 }
@@ -628,7 +621,7 @@ button:active {
 }
 
 .transition-slide-up-enter {
-  transform: translateY(200px)
+  transform: translateY(200px);
 }
 
 .transition-slide-up-enter-active {

@@ -15,6 +15,7 @@ import { ItemsPayload } from '../../reducers/refreshSlots';
 import { closeTooltip, openTooltip } from '../../store/tooltip';
 import { openContextMenu } from '../../store/contextMenu';
 import { useMergeRefs } from '@floating-ui/react';
+import useFitText from '../../hooks/useFitText';
 
 interface SlotProps {
   inventoryId: Inventory['id'];
@@ -30,6 +31,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
   const manager = useDragDropManager();
   const dispatch = useAppDispatch();
   const timerRef = useRef<number | null>(null);
+  const { labelRef, fontSize } = useFitText();
 
   const canDrag = useCallback(() => {
     return canPurchaseItem(item, { type: inventoryType, groups: inventoryGroups }) && canCraftItem(item, inventoryType);
@@ -119,6 +121,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
 
   const refs = useMergeRefs([connectRef, ref]);
 
+  const label = item.metadata?.label ? item.metadata.label : item.name ? Items[item.name]?.label || item.name : '';
+
   return (
     <div
       ref={refs}
@@ -198,13 +202,16 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
               </>
             )}
             <div className="inventory-slot-label-box">
-              <div className="inventory-slot-label-text">
-                {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
+              <div className="inventory-slot-label-text" ref={labelRef} style={{ fontSize: `${fontSize}vw` }}>
+                {label}
               </div>
               {inventoryType !== 'shop' && item?.durability !== undefined && (
                 <WeightBar percent={item.durability} durability />
               )}
             </div>
+            {item.weight !== undefined && (
+              <div className="inventory-slot-weight">{(item.weight / 1000).toLocaleString('en-us')}kg</div>
+            )}
           </div>
         </div>
       )}
