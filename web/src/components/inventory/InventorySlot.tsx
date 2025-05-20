@@ -153,13 +153,18 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
           }}
         >
           <div className="item-slot-header-wrapper">
-            {inventoryType === 'player' && item.slot <= 5 && (
-              <div className="inventory-slot-number">
-                <div>{item.slot}</div>
+            {item.weight !== undefined && (
+              <div className="inventory-slot-weight">
+                {(item.weight / 1000).toLocaleString('en-us', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                kg
               </div>
             )}
+            {inventoryType === 'player' && item.slot <= 5 && <div className="inventory-slot-number">{item.slot}</div>}
 
-            <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+            <p className="item-slot-amount">{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
           </div>
 
           <div>
