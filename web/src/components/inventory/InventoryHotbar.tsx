@@ -4,9 +4,47 @@ import useNuiEvent from '../../hooks/useNuiEvent';
 import { Items } from '../../store/items';
 import WeightBar from '../utils/WeightBar';
 import { useAppSelector } from '../../store';
+import useFitText from '../../hooks/useFitText';
 import { selectLeftInventory } from '../../store/inventory';
-import { SlotWithItem } from '../../typings';
+import { Slot, SlotWithItem } from '../../typings';
 import SlideUp from '../utils/transitions/SlideUp';
+
+const HotbarItem: React.FC<{ item: Slot }> = ({ item }) => {
+  const labelText = isSlotWithItem(item)
+    ? item.metadata?.label || Items[item.name]?.label || item.name
+    : '';
+  const labelRef = useFitText(labelText);
+
+  return (
+    <>
+      {isSlotWithItem(item) && (
+        <div className="item-slot-wrapper">
+          <div className="item-slot-header-wrapper">
+            {item.weight !== undefined && (
+              <div className="inventory-slot-weight">
+                {(item.weight / 1000).toLocaleString('en-us', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                kg
+              </div>
+            )}
+            <div className="inventory-slot-number">{item.slot}</div>
+            <p className="item-slot-amount">{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+          </div>
+          <div>
+            <div className="inventory-slot-label-box">
+              <div className="inventory-slot-label-text" ref={labelRef}>
+                {labelText}
+              </div>
+              {item?.durability !== undefined && <WeightBar percent={item.durability} durability />}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 const InventoryHotbar: React.FC = () => {
   const [hotbarVisible, setHotbarVisible] = useState(false);
@@ -36,31 +74,7 @@ const InventoryHotbar: React.FC = () => {
             }}
             key={`hotbar-${item.slot}`}
           >
-            {isSlotWithItem(item) && (
-              <div className="item-slot-wrapper">
-                <div className="item-slot-header-wrapper">
-                  {item.weight !== undefined && (
-                    <div className="inventory-slot-weight">
-                      {(item.weight / 1000).toLocaleString('en-us', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                      kg
-                    </div>
-                  )}
-                  <div className="inventory-slot-number">{item.slot}</div>
-                  <p className="item-slot-amount">{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
-                </div>
-                <div>
-                  <div className="inventory-slot-label-box">
-                    <div className="inventory-slot-label-text">
-                      {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
-                    </div>
-                    {item?.durability !== undefined && <WeightBar percent={item.durability} durability />}
-                  </div>
-                </div>
-              </div>
-            )}
+            <HotbarItem item={item} />
           </div>
         ))}
       </div>
