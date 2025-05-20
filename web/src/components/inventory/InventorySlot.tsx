@@ -204,6 +204,9 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
               {inventoryType !== 'shop' && item?.durability !== undefined && (
                 <WeightBar percent={item.durability} durability />
               )}
+              {item.weight !== undefined && (
+                <div className="inventory-slot-weight">{(item.weight / 1000).toLocaleString('en-us')}kg</div>
+              )}
             </div>
           </div>
         </div>
