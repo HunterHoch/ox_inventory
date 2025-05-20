@@ -120,7 +120,7 @@ const InventoryContext: React.FC = () => {
           <>
             {item &&
               item.name &&
-              groupButtons(Items[item.name]?.buttons).map((group: Group, index: number) => (
+              groupButtons(item.name ? Items[item.name]?.buttons : undefined).map((group: Group, index: number) => (
                 <React.Fragment key={index}>
                   {group.groupName ? (
                     <Menu label={group.groupName}>

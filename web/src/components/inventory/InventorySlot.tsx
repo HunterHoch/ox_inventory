@@ -199,10 +199,13 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
             )}
             <div className="inventory-slot-label-box">
               <div className="inventory-slot-label-text">
-                {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
+                {item.metadata?.label ? item.metadata.label : item.name ? Items[item.name]?.label || item.name : ''}
               </div>
               {inventoryType !== 'shop' && item?.durability !== undefined && (
                 <WeightBar percent={item.durability} durability />
+              )}
+              {item.weight !== undefined && (
+                <div className="inventory-slot-weight">{(item.weight / 1000).toLocaleString('en-us')}kg</div>
               )}
             </div>
           </div>
