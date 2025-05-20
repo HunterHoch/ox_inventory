@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import useFitText from '../../hooks/useFitText';
 import { DragSource, Inventory, InventoryType, Slot, SlotWithItem } from '../../typings';
 import { useDrag, useDragDropManager, useDrop } from 'react-dnd';
 import { useAppDispatch } from '../../store';
@@ -30,6 +31,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
   const manager = useDragDropManager();
   const dispatch = useAppDispatch();
   const timerRef = useRef<number | null>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  useFitText(labelRef, [item.metadata?.label, item.name]);
 
   const canDrag = useCallback(() => {
     return canPurchaseItem(item, { type: inventoryType, groups: inventoryGroups }) && canCraftItem(item, inventoryType);
@@ -160,6 +163,9 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
             )}
 
             <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+            {item.weight !== undefined && (
+              <div className="inventory-slot-weight">{(item.weight / 1000).toLocaleString('en-us')}kg</div>
+            )}
           </div>
 
           <div>
@@ -198,7 +204,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
               </>
             )}
             <div className="inventory-slot-label-box">
-              <div className="inventory-slot-label-text">
+              <div className="inventory-slot-label-text" ref={labelRef}>
                 {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
               </div>
               {inventoryType !== 'shop' && item?.durability !== undefined && (
