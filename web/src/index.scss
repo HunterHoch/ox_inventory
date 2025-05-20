@@ -344,6 +344,12 @@ button:active {
   padding-top: 0.5vw;
 }
 
+// center hotbar numbers inside inventory hotbar slots
+.hotinventory-grid-container .inventory-slot-number {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .label-container {
   display: flex;
   flex-direction: row;
