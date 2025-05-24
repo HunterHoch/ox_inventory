@@ -136,7 +136,11 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
             ? 'brightness(80%) grayscale(100%)'
             : undefined,
         opacity: isDragging ? 0.4 : 1.0,
-        backgroundColor: isSlotWithItem(item) ? 'rgba(142, 142, 142,0.63)' : 'rgba(71, 71, 71, 0.63)',
+        backgroundColor: item.metadata?.contraband
+          ? 'rgba(255, 105, 97, 0.63)'
+          : isSlotWithItem(item)
+          ? 'rgba(142, 142, 142,0.63)'
+          : 'rgba(71, 71, 71, 0.63)',
         backgroundImage: `url(${item?.name ? getItemUrl(item as SlotWithItem) : 'none'}`,
         border: isOver ? '1px dashed rgba(255,255,255,0.4)' : '',
       }}
