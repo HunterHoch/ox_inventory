@@ -69,7 +69,11 @@ const InventoryHotbar: React.FC = () => {
           <div
             className="hotbar-item-slot"
             style={{
-              backgroundColor: isSlotWithItem(item) ? 'rgba(142, 142, 142,0.63)' : 'rgba(71, 71, 71, 0.63)',
+              backgroundColor: item.metadata?.contraband
+                ? 'rgba(255, 105, 97, 0.63)'
+                : isSlotWithItem(item)
+                ? 'rgba(142, 142, 142,0.63)'
+                : 'rgba(71, 71, 71, 0.63)',
               backgroundImage: `url(${item?.name ? getItemUrl(item as SlotWithItem) : 'none'}`,
             }}
             key={`hotbar-${item.slot}`}
