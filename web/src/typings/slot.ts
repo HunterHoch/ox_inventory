@@ -4,6 +4,7 @@ export type Slot = {
   count?: number;
   weight?: number;
   metadata?: {
+    contraband?: boolean;
     [key: string]: any;
   };
   durability?: number;
