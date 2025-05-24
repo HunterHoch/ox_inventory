@@ -100,6 +100,13 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.tooltip-contraband {
+  color: #E74C3C;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 4px 0;
+}
+
 button:active {
   transform: translateY(3px);
 }

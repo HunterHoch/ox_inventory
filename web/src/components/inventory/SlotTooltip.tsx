@@ -32,6 +32,9 @@ const SlotTooltip: React.ForwardRefRenderFunction<
         </div>
       ) : (
         <div style={{ ...style }} className="tooltip-wrapper" ref={ref}>
+          {item.metadata?.contraband && (
+            <p className="tooltip-contraband">[CONTRABAND]</p>
+          )}
           <div className="tooltip-header-wrapper">
             <p>{item.metadata?.label || itemData.label || item.name}</p>
             {inventoryType === 'crafting' ? (
